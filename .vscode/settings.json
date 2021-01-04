@@ -1,0 +1,33 @@
+{
+    "eslint.codeAction.showDocumentation": {
+        "enable": true,
+        "options": {
+            "extensions": [
+                ".js",
+                ".vue",
+                ".ts",
+                ".tsx"
+            ]
+        },
+        "validate": [
+            "javascript",
+            "javascriptreact",
+            {
+                "language": "html",
+                "autoFix": true
+            },
+            {
+                "language": "vue",
+                "autoFix": true
+            },
+            { // 解决格式化typeScript无法生效
+                "language": "typescript",
+                "autoFix": true
+            },
+            { //解决格式化typeScript无法生效
+                "language": "typescriptreact",
+                "autoFix": true
+            }
+        ]
+    }
+}
