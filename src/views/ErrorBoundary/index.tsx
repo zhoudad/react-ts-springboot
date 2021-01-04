@@ -37,7 +37,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   render() {
     let { errorList } = this.state;
-    console.log(errorList)
     if (this.state.hasError) {
       // 你可以自定义降级后的 UI 并渲染
       return (

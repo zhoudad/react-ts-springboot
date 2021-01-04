@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Home, Login } from '../views';
+import { Home, Login, Analysis, Monitor,WorkPlace } from '../views';
 
 export const menus = [
   // 菜单相关路由
@@ -7,7 +7,37 @@ export const menus = [
     path: '/',
     name: '首页',
     exact: true,
-    component: Home,
+    Redirect: '/dashboard/analysis',
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/dashboard/analysis',
+    name: '分析页',
+    exact: true,
+    component: Analysis,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/dashboard/monitor',
+    name: '监控页',
+    exact: true,
+    component: Monitor,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/dashboard/workplace',
+    name: '工作台',
+    exact: true,
+    component: WorkPlace,
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 

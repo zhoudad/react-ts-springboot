@@ -1,6 +1,9 @@
-import React, { lazy } from 'react'
+import React, { lazy } from 'react';
 
 const Home = lazy(() => import('./Home'));
-import Login from './Login'
+const Analysis = lazy(() => import('./Dashboard/Analysis'));
+const Monitor = lazy(() => import('./Dashboard/Monitor'));
+const WorkPlace = lazy(() => import('./Dashboard/WorkPlace'));
+import Login from './Login';
 
-export { Home, Login };
+export { Home, Login, Analysis, Monitor,WorkPlace };
