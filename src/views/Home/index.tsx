@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { Menu, Layout, Breadcrumb, Button } from 'antd';
+import { Menu, Layout } from 'antd';
 import { EditOutlined, PieChartOutlined, TableOutlined, ProfileOutlined, UserOutlined } from '@ant-design/icons';
-import styles from './index.module.css';
+import MainBreadcrumb from '../../components/MainBreadcrumb';
 import { RoutesRender } from '../../routes/utils';
 import { routePropsInter } from '../../interfaces/routeInterface';
+import { mapBreadcrumb } from '../../reducer/connect';
+import { connect } from 'react-redux';
 import * as _ from 'lodash';
+import './index.css';
+import logo from '../../assets/svgs/logo.svg';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -18,44 +22,21 @@ interface HomeState {
   openKeys: Array<string>;
   rootSubmenuKeys: Array<string>;
   paths: Array<string>;
-  defaultSelectedKeys: Array<string>;
-  defaultOpenKeys: Array<string>;
+  selectedKeys: Array<string>;
 }
 
 class Home extends Component<any, HomeState> {
-  constructor(props: HomeProps) {
+  constructor(props: any) {
     super(props);
     this.state = {
       collapsed: false,
       openKeys: ['dashboard'],
       rootSubmenuKeys: ['dashboard', 'form', 'list', 'profile', 'account'],
       paths: [],
-      defaultOpenKeys: ['analysis'],
-      defaultSelectedKeys: ['analysis'],
+      selectedKeys: ['analysis'],
     };
     this.munuClick = this.munuClick.bind(this);
-    this.handlePathChange = this.handlePathChange.bind(this);
   }
-
-  onOpenChange = (keys: any) => {
-    let { openKeys, rootSubmenuKeys } = this.state;
-    const latestOpenKey = keys.find((key: any) => openKeys.indexOf(key) === -1);
-    if (rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      this.setState({
-        openKeys: keys,
-      });
-    } else {
-      this.setState(() => {
-        return {
-          openKeys: latestOpenKey ? [latestOpenKey] : [],
-        };
-      });
-    }
-  };
-
-  onCollapse = (collapsed: boolean) => {
-    this.setState({ collapsed });
-  };
 
   munuClick({ keyPath }: { keyPath: any }) {
     this.handlePathChange(keyPath);
@@ -70,9 +51,9 @@ class Home extends Component<any, HomeState> {
       path = path.slice(0, 1).toUpperCase() + path.slice(1);
       return path;
     });
+    this.props.handlePaths(paths);
     this.setState({
-      defaultSelectedKeys: [paths[paths.length - 1].toLowerCase()],
-      paths,
+      selectedKeys: [paths[paths.length - 1].toLowerCase()],
     });
   }
 
@@ -81,13 +62,16 @@ class Home extends Component<any, HomeState> {
   }
 
   render() {
-    const { collapsed, openKeys, paths, defaultSelectedKeys } = this.state;
     const { routes } = this.props;
+    const { selectedKeys } = this.state;
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-          <div className={styles.homeLogo} />
-          <Menu theme="dark" defaultSelectedKeys={defaultSelectedKeys} mode="inline" onClick={this.munuClick} openKeys={openKeys} onOpenChange={this.onOpenChange}>
+        <Header className="site-layout-header" style={{ padding: 0 }}>
+          <div className="site-header-logo">
+            <img src={logo} alt="Logo" />
+            <h1>周大大</h1>
+          </div>
+          <Menu theme="light" selectedKeys={selectedKeys} mode="horizontal" onClick={this.munuClick}>
             <SubMenu key="dashboard" icon={<PieChartOutlined />} title="Dashboard">
               <Menu.Item key="analysis">分析页</Menu.Item>
               <Menu.Item key="monitor">监控页</Menu.Item>
@@ -116,24 +100,17 @@ class Home extends Component<any, HomeState> {
               <Menu.Item key="settings">个人设置</Menu.Item>
             </SubMenu>
           </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }} />
-          <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              {paths.map((path) => (
-                <Breadcrumb.Item key={path}>{path}</Breadcrumb.Item>
-              ))}
-            </Breadcrumb>
-            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-              <RoutesRender routes={routes}></RoutesRender>
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>ZhouDad ©2021 Created by Demo</Footer>
-        </Layout>
+        </Header>
+        <Content style={{ margin: '0 16px' }}>
+          <MainBreadcrumb />
+          <div className="site-layout-content" style={{ padding: 24, minHeight: 360 }}>
+            <RoutesRender routes={routes}></RoutesRender>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>ZhouDad ©2021 Created by Demo</Footer>
       </Layout>
     );
   }
 }
 
-export default Home;
+export default connect(mapBreadcrumb.mapStateToProps, mapBreadcrumb.mapDispatchToProps)(Home);

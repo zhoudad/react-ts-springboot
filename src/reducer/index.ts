@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { USER_LOGIN, SET_USERINFO } from './actionTypes';
+import { USER_LOGIN, SET_USERINFO, SET_PATHS } from './actionTypes';
 
 interface actionConf {
   type: string;
@@ -9,6 +9,7 @@ interface actionConf {
 // 初始 state
 const initState = {
   userInfo: {},
+  paths: [],
 };
 // Reducer 是一个函数，它接受当前 State 和 Action 作为参数，返回一个新的 State。
 const getLoginFun = (state = initState, action: actionConf) => {
@@ -24,8 +25,16 @@ const getLoginFun = (state = initState, action: actionConf) => {
 const setUserInfoFun = (state = initState, action: actionConf) => {
   switch (action.type) {
     case SET_USERINFO:
-      // console.log({...state, userInfo:action.userInfo})
       return { ...state, userInfo: action.userInfo };
+    default:
+      return state;
+  }
+};
+
+const setMainPathsFun = (state = initState, action: actionConf) => {
+  switch (action.type) {
+    case SET_PATHS:
+      return { ...state, paths: action.paths };
     default:
       return state;
   }
@@ -35,4 +44,5 @@ const setUserInfoFun = (state = initState, action: actionConf) => {
 export const allReducer = combineReducers({
   getLogin: getLoginFun,
   setUserInfo: setUserInfoFun,
+  setMainPaths: setMainPathsFun,
 });

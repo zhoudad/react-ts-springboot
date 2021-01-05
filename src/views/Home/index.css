@@ -1,0 +1,16 @@
+.site-layout-header{
+    display: flex;
+    background-color: #fff;
+}
+.site-header-logo{
+    min-width: 148px;
+    height: 100%;
+    display: flex;
+    padding-left: 16px;
+    align-items: center;
+}
+.site-header-logo>h1{
+    margin: 0px;
+    margin-left: 16px;
+    font-size: 18px;
+}

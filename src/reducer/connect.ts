@@ -1,5 +1,5 @@
 import http from '../api/http';
-import { USER_LOGIN, SET_USERINFO } from './actionTypes';
+import { USER_LOGIN, SET_USERINFO, SET_PATHS } from './actionTypes';
 import { receive } from './actionCreate';
 import qs from 'qs';
 import { message } from 'antd';
@@ -12,19 +12,15 @@ interface fetchConf {
 }
 
 function fetchPosts(url: string, actionType: string, subreddit: string, data: any) {
-  return (dispatch:any) => {
+  return (dispatch: any) => {
     dispatch(receive(actionType, subreddit, '暂无数据'));
-    // console.log(data)
     return http
       .post(url, qs.stringify(data))
-      .then((res:any) => {
-        // console.log(res)
+      .then((res: any) => {
         switch (res.status) {
           case 200:
             message.success(res.msg, 1);
-            sessionStorage.setItem('userInfo', JSON.stringify({ name: res.data.name, role: res.data.role, status: 200 }));
-            // console.log(res)
-            dispatch(receive(actionType, subreddit, { name: res.data.name, role: res.data.role, status: 200 }));
+            dispatch(receive(actionType, subreddit, res.data));
             break;
           case 500:
             message.error(res.msg, 1);
@@ -33,7 +29,7 @@ function fetchPosts(url: string, actionType: string, subreddit: string, data: an
             break;
         }
       })
-      .catch((err:any) => {
+      .catch((err: any) => {
         if (err && err.response) {
           switch (err.response.status) {
             case 400:
@@ -79,13 +75,12 @@ function fetchPosts(url: string, actionType: string, subreddit: string, data: an
 }
 
 export const mapLogin = {
-  mapStateToProps(state:any) {
-    console.log(state);
+  mapStateToProps(state: any) {
     return state.getLogin;
   },
-  mapDispatchToProps(dispatch:any) {
+  mapDispatchToProps(dispatch: any) {
     return {
-      handleLogin: (data:any) => {
+      handleLogin: (data: any) => {
         return dispatch(fetchPosts('/login', USER_LOGIN, 'userInfo', data));
       },
     };
@@ -93,14 +88,27 @@ export const mapLogin = {
 };
 
 export const mapSetInfo = {
-  mapStateToProps(state:any) {
+  mapStateToProps(state: any) {
     return state.setUserInfo;
   },
-  mapDispatchToProps(dispatch:any) {
+  mapDispatchToProps(dispatch: any) {
     return {
-      setUserInfo: (data:any) => {
-        // console.log(data)
+      setUserInfo: (data: any) => {
         return dispatch(receive(SET_USERINFO, 'userInfo', data));
+      },
+    };
+  },
+};
+
+// ===================================全局面包屑paths
+export const mapBreadcrumb = {
+  mapStateToProps(state: any) {
+    return state.setMainPaths;
+  },
+  mapDispatchToProps(dispatch: any) {
+    return {
+      handlePaths: (data: any) => {
+        return dispatch(receive(SET_PATHS, 'paths', data));
       },
     };
   },

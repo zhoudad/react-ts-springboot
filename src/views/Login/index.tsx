@@ -25,6 +25,7 @@ class Login extends Component<any,LoginState> {
   }
 
   onFinish(info: InfoValue) {
+    // TODO:结合后端接口做验证
     const { from } = this.props.location.state || { from: { pathname: "/" } };
     if (info && info.username === 'admin' && info.password === '123456') {
       from.pathname = from.pathname === '/login' ? '/' : from.pathname;

@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ErrorBoundary>
-          <Suspense fallback={<Spin />}>
+          <Suspense fallback={<div className="app-spin"><Spin size="large"/></div>}>
             <Router>
               <div className="App">
                 <Switch>
