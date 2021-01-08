@@ -1,0 +1,14 @@
+#center{
+    display: flex;
+    /* justify-content: space-between; */
+}
+.center-info{
+    /* background-color: #FFF; */
+    margin-right: 24px;
+    width: 350px;
+}
+.center-experience{
+    flex: 1;
+    background-color: #fff;
+    padding: 12px 16px;
+}

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Menu, Layout } from 'antd';
-import { EditOutlined, PieChartOutlined, TableOutlined, ProfileOutlined, UserOutlined } from '@ant-design/icons';
+import { Menu, Layout, Avatar, Row, Col, Dropdown } from 'antd';
+import { EditOutlined, PieChartOutlined, TableOutlined, ProfileOutlined, UserOutlined, BellOutlined, AntDesignOutlined, SettingOutlined, PoweroffOutlined } from '@ant-design/icons';
 import MainBreadcrumb from '../../components/MainBreadcrumb';
+import CustomizeIcon from '../../components/CustomizeIcon';
 import { RoutesRender } from '../../routes/utils';
 import { routePropsInter } from '../../interfaces/routeInterface';
 import { mapBreadcrumb } from '../../reducer/connect';
@@ -66,10 +67,10 @@ class Home extends Component<any, HomeState> {
     const { selectedKeys } = this.state;
     return (
       <Layout style={{ minHeight: '100vh' }}>
-        <Header className="site-layout-header" style={{ padding: 0 }}>
+        <Header className="site-layout-header">
           <div className="site-header-logo">
             <img src={logo} alt="Logo" />
-            <h1>周大大</h1>
+            <h1>个人网站</h1>
           </div>
           <Menu theme="light" selectedKeys={selectedKeys} mode="horizontal" onClick={this.munuClick}>
             <SubMenu key="dashboard" icon={<PieChartOutlined />} title="Dashboard">
@@ -100,10 +101,45 @@ class Home extends Component<any, HomeState> {
               <Menu.Item key="settings">个人设置</Menu.Item>
             </SubMenu>
           </Menu>
+          <div style={{ flex: 1 }}>
+            <div className="site-header-right">
+              <BellOutlined style={{ fontSize: 16 }} />
+              <Dropdown
+                overlay={
+                  <Menu>
+                    <Menu.Item>
+                      <a target="_blank" rel="noopener noreferrer">
+                        <UserOutlined />
+                        个人中心
+                      </a>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <a target="_blank" rel="noopener noreferrer">
+                        <SettingOutlined />
+                        个人设置
+                      </a>
+                    </Menu.Item>
+                    <Menu.Divider />
+                    <Menu.Item>
+                      <a target="_blank" rel="noopener noreferrer">
+                        <PoweroffOutlined />
+                        退出登录
+                      </a>
+                    </Menu.Item>
+                  </Menu>
+                }>
+                <span className="header-user">
+                  <Avatar size={32} icon={<AntDesignOutlined />} />
+                  <span style={{ marginLeft: 6 }}>周大大</span>
+                </span>
+              </Dropdown>
+              <CustomizeIcon type="site-yuyan1" style={{ fontSize: 16 }} />
+            </div>
+          </div>
         </Header>
-        <Content style={{ margin: '0 16px' }}>
+        <Content className="site-layout-content">
           <MainBreadcrumb />
-          <div className="site-layout-content" style={{ padding: 24, minHeight: 360 }}>
+          <div className="site-layout-wrap">
             <RoutesRender routes={routes}></RoutesRender>
           </div>
         </Content>
