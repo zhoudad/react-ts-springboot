@@ -35,7 +35,17 @@ class Setting extends Component<any, any> {
         <Tabs defaultActiveKey="basic-setting" tabPosition={'left'}>
           <TabPane tab="基本设置" key="basic-setting">
             <h2>基本设置</h2>
-            <Form {...layout} initialValues={{ email: 'zhoudad@foxmail.com', nickname: '周大大', profile: '' }} ref={this.formRef} layout={'vertical'} name="control-ref" onFinish={this.onFinish}>
+            <Form
+              {...layout}
+              initialValues={{
+                email: 'zhoudad@foxmail.com',
+                nickname: '周大大',
+                profile: '',
+              }}
+              ref={this.formRef}
+              layout={'vertical'}
+              name="control-ref"
+              onFinish={this.onFinish}>
               <Form.Item name="email" label="邮箱">
                 <Input />
               </Form.Item>
@@ -51,7 +61,15 @@ class Setting extends Component<any, any> {
                 </Select>
               </Form.Item>
               <Form.Item name="province" label="所在省份">
-                <Cascader fieldNames={{ label: 'name', value: 'code', children: 'childs' }} options={pcas} placeholder="省份" />
+                <Cascader
+                  fieldNames={{
+                    label: 'name',
+                    value: 'code',
+                    children: 'childs',
+                  }}
+                  options={pcas}
+                  placeholder="省份"
+                />
               </Form.Item>
               <Form.Item name="streetAddress" label="街道地址">
                 <Input />
@@ -69,7 +87,10 @@ class Setting extends Component<any, any> {
                 </Input.Group>
               </Form.Item>
               <Form.Item>
-                <Button type="primary" htmlType="submit" style={{ marginRight: 12 }}>
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{ marginRight: 12 }}>
                   确认
                 </Button>
                 <Button htmlType="button" onClick={this.onReset}>

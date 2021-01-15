@@ -6,6 +6,7 @@ import ErrorBoundary from './views/ErrorBoundary';
 import { Provider } from 'react-redux';
 import store from './reducer/store';
 import { Spin } from 'antd';
+import './locales'
 import './styles/App.css';
 
 class App extends Component {
