@@ -106,6 +106,7 @@ class Home extends Component<any, HomeState> {
 
   render() {
     const { routes, t } = this.props;
+    console.log(this.props)
     const { selectedKeys, tabListNoTitle } = this.state;
     const data = [
       {

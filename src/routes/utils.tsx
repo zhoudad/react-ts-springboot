@@ -22,6 +22,7 @@ export const RouteRender = (route: routePropsInter) => {
             />
           );
         }
+        console.log(route)
         return route && (route.Redirect ? <Redirect to={route.Redirect}></Redirect> : <route.component {...props} routes={route.routes ? route.routes : []} />);
       }}
     />

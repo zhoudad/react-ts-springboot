@@ -9,7 +9,7 @@ import { Spin } from 'antd';
 import './locales'
 import './styles/App.css';
 
-class App extends Component {
+class App extends Component<any,any> {
   render() {
     return (
       <Provider store={store}>

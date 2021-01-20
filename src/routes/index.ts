@@ -1,5 +1,5 @@
 // import React from 'react';
-import { Home, Login, Analysis, Monitor,WorkPlace,Center,Setting } from '../views';
+import { Home, Login, Analysis, Monitor, WorkPlace, Center, Setting, Articles, Projects } from '../views';
 
 export const menus = [
   // 菜单相关路由
@@ -53,6 +53,35 @@ export const menus = [
     name: '个人设置',
     exact: true,
     component: Setting,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: '/list/seach',
+    name: '个人设置',
+    exact: true,
+    Redirect: '/list/seach/articles',
+    meta: {
+      requiresAuth: true,
+    },
+    routes: [
+     
+    ],
+  },
+  {
+    path: '/list/seach/articles',
+    name: '文章列表',
+    exact: true,
+    component: Articles,
+    meta: {
+      requiresAuth: true,
+    },
+  },{
+    path: '/list/seach/projects',
+    name: '项目列表',
+    exact: true,
+    component: Projects,
     meta: {
       requiresAuth: true,
     },
