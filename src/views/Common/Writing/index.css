@@ -1,0 +1,24 @@
+.writing {
+    background-color: #fff;
+    width: 750px;
+    margin: 0 auto;
+}
+
+.writing-up-image {
+    width: 100%;
+    height: 250px;
+    color: #c9c9c9;
+    background-color: #f6f6f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .8s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.writing-up-image:hover{
+    color: #313131;
+}
+
+.writing-wrap {
+    padding: 16px;
+}

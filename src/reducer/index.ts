@@ -10,6 +10,7 @@ interface actionConf {
 const initState = {
   userInfo: {},
   paths: [],
+  breadcrumb: true,
 };
 // Reducer 是一个函数，它接受当前 State 和 Action 作为参数，返回一个新的 State。
 const getLoginFun = (state = initState, action: actionConf) => {
@@ -40,9 +41,20 @@ const setMainPathsFun = (state = initState, action: actionConf) => {
   }
 };
 
+export const setBreadcrumbFun = (state = initState, action: actionConf) => {
+  switch (action.type) {
+    case SET_PATHS:
+      return { ...state, breadcrumb: action.breadcrumb };
+    default:
+      return state;
+  }
+};
+
+
 // combineReducers方法，用于 Reducer 的拆分。combineReducers()做的就是产生一个整体的 Reducer 函数
 export const allReducer = combineReducers({
   getLogin: getLoginFun,
   setUserInfo: setUserInfoFun,
   setMainPaths: setMainPathsFun,
+  setBreadcrumb: setBreadcrumbFun,
 });

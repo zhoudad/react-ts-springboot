@@ -2,8 +2,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { routePropsInter } from '../interfaces/routeInterface';
-import { RouteProps } from 'react-router';
-
 // 渲染当前组件
 export const RouteRender = (route: routePropsInter) => {
   return (
@@ -12,7 +10,11 @@ export const RouteRender = (route: routePropsInter) => {
       exact={route.exact}
       render={(props) => {
         let isAuthenticated = sessionStorage.getItem('isAuthenticated');
-        if (!(typeof route.meta === 'object' && route.meta.requiresAuth) && !isAuthenticated && props.location.pathname != '/login') {
+        if (
+          !(typeof route.meta === 'object' && route.meta.requiresAuth) &&
+          !isAuthenticated &&
+          props.location.pathname != '/login'
+        ) {
           return (
             <Redirect
               to={{
@@ -22,8 +24,15 @@ export const RouteRender = (route: routePropsInter) => {
             />
           );
         }
-        console.log(route)
-        return route && (route.Redirect ? <Redirect to={route.Redirect}></Redirect> : <route.component {...props} routes={route.routes ? route.routes : []} />);
+
+        return (
+          route &&
+          (route.Redirect ? (
+            <Redirect to={route.Redirect}></Redirect>
+          ) : (
+            <route.component {...props} routes={route.routes ? route.routes : []} />
+          ))
+        );
       }}
     />
   );

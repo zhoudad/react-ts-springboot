@@ -1,5 +1,15 @@
-// import React from 'react';
-import { Home, Login, Analysis, Monitor, WorkPlace, Center, Setting, Articles, Projects } from '../views';
+import {
+  Home,
+  Login,
+  Analysis,
+  Monitor,
+  WorkPlace,
+  Center,
+  Setting,
+  Articles,
+  Projects,
+  Writing,
+} from '../views';
 
 export const menus = [
   // 菜单相关路由
@@ -10,6 +20,17 @@ export const menus = [
     Redirect: '/dashboard/analysis',
     meta: {
       requiresAuth: true,
+      breadcrumb: true,
+    },
+  },
+  {
+    path: '/common/writing',
+    name: '创作',
+    exact: true,
+    component: Writing,
+    meta: {
+      requiresAuth: true,
+      breadcrumb: false,
     },
   },
   {
@@ -19,6 +40,7 @@ export const menus = [
     component: Analysis,
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
   },
   {
@@ -28,6 +50,7 @@ export const menus = [
     component: Monitor,
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
   },
   {
@@ -37,6 +60,7 @@ export const menus = [
     component: WorkPlace,
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
   },
   {
@@ -46,6 +70,7 @@ export const menus = [
     component: Center,
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
   },
   {
@@ -55,6 +80,7 @@ export const menus = [
     component: Setting,
     meta: {
       requiresAuth: true,
+      breadcrumb: true,
     },
   },
   {
@@ -64,10 +90,8 @@ export const menus = [
     Redirect: '/list/seach/articles',
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
-    routes: [
-     
-    ],
   },
   {
     path: '/list/seach/articles',
@@ -76,14 +100,17 @@ export const menus = [
     component: Articles,
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
-  },{
+  },
+  {
     path: '/list/seach/projects',
     name: '项目列表',
     exact: true,
     component: Projects,
     meta: {
       requiresAuth: true,
+      breadcrumb: false,
     },
   },
 ];

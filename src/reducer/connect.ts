@@ -1,5 +1,5 @@
 import http from '../api/http';
-import { USER_LOGIN, SET_USERINFO, SET_PATHS } from './actionTypes';
+import { USER_LOGIN, SET_USERINFO, SET_PATHS,SET_Breadcrumb } from './actionTypes';
 import { receive } from './actionCreate';
 import qs from 'qs';
 import { message } from 'antd';
@@ -101,7 +101,7 @@ export const mapSetInfo = {
 };
 
 // ===================================全局面包屑paths
-export const mapBreadcrumb = {
+export const mapPaths = {
   mapStateToProps(state: any) {
     return state.setMainPaths;
   },
@@ -109,6 +109,19 @@ export const mapBreadcrumb = {
     return {
       handlePaths: (data: any) => {
         return dispatch(receive(SET_PATHS, 'paths', data));
+      },
+    };
+  },
+};
+
+export const mapBreadcrumbs = {
+  mapStateToProps(state: any) {
+    return state.setBreadcrumb;
+  },
+  mapDispatchToProps(dispatch: any) {
+    return {
+      handleBreadcrumb: (data: any) => {
+        return dispatch(receive(SET_Breadcrumb, 'breadcrumb', data));
       },
     };
   },

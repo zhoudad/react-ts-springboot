@@ -21,4 +21,5 @@ export interface routePropsInter {
 
 export interface routeMataInter {
   requiresAuth: boolean;
+  breadcrumb?: boolean;
 }

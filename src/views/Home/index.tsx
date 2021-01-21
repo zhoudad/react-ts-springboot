@@ -16,7 +16,7 @@ import MainBreadcrumb from '../../components/MainBreadcrumb';
 import CustomizeIcon from '../../components/CustomizeIcon';
 import { RoutesRender } from '../../routes/utils';
 import { routePropsInter } from '../../interfaces/routeInterface';
-import { mapBreadcrumb } from '../../reducer/connect';
+import { mapPaths } from '../../reducer/connect';
 import { connect } from 'react-redux';
 import * as _ from 'lodash';
 import './index.css';
@@ -259,9 +259,6 @@ class Home extends Component<any, HomeState> {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => this.changeLanguage('en_US')}>
-                        {/* <span role="img" aria-label="English">
-                          US
-                        </span> */}
                         English
                       </a>
                     </Menu.Item>
@@ -270,9 +267,6 @@ class Home extends Component<any, HomeState> {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => this.changeLanguage('zh_CN')}>
-                        {/* <span role="img" aria-label="简体中文">
-                          CN
-                        </span> */}
                         简体中文
                       </a>
                     </Menu.Item>
@@ -281,9 +275,6 @@ class Home extends Component<any, HomeState> {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => this.changeLanguage('hk_CN')}>
-                        {/* <span role="img" aria-label="English">
-                          Hk
-                        </span> */}
                         繁体中文
                       </a>
                     </Menu.Item>
@@ -307,8 +298,7 @@ class Home extends Component<any, HomeState> {
     );
   }
 }
-
-export default connect(
-  mapBreadcrumb.mapStateToProps,
-  mapBreadcrumb.mapDispatchToProps
-)(withTranslation()(Home));
+export default withTranslation()(connect(
+  mapPaths.mapStateToProps,
+  mapPaths.mapDispatchToProps
+)(Home));

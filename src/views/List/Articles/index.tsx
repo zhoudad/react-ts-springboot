@@ -12,13 +12,11 @@ class Articles extends Component<any, any> {
 
   onSearch = () => {};
 
+  toWriting = () => {
+    this.props.history.push('/common/writing');
+  };
+
   render() {
-    let articleClass = [
-      {
-        lable: '中国文学史',
-        include: ['古代文学', '近代文学', '现代文学', '当代文学'],
-      },
-    ];
     return (
       <Layout>
         <Row style={{ marginBottom: 16 }}>
@@ -28,7 +26,7 @@ class Articles extends Component<any, any> {
               <Button type="primary" icon={<SearchOutlined />}>
                 搜索
               </Button>
-              <Button type="primary" icon={<FormOutlined />}>
+              <Button type="primary" icon={<FormOutlined />} onClick={this.toWriting}>
                 创作
               </Button>
             </Space>
