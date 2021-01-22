@@ -3,6 +3,7 @@ import { Tabs, Row, Col, Layout, Form, Input, Checkbox, Button } from 'antd';
 import { UserOutlined, LockOutlined, MailOutlined, TabletOutlined } from '@ant-design/icons';
 import { mapLogin } from '../../reducer/connect';
 import { connect } from 'react-redux';
+import { encryptionFun,encryptByAESFun } from '../../utils';
 import styles from './index.module.css';
 
 const { TabPane } = Tabs;
@@ -11,11 +12,11 @@ interface InfoValue {
   username: string;
   password: string;
 }
-interface LoginProps { };
+interface LoginProps {}
 interface LoginState {
-    hasError: boolean;
-};
-class Login extends Component<any,LoginState> {
+  hasError: boolean;
+}
+class Login extends Component<any, LoginState> {
   constructor(props: any) {
     super(props);
     this.onFinish = this.onFinish.bind(this);
@@ -26,10 +27,11 @@ class Login extends Component<any,LoginState> {
 
   onFinish(info: InfoValue) {
     // TODO:结合后端接口做验证
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
     if (info && info.username === 'admin' && info.password === '123456') {
+      sessionStorage.setItem('token',encryptByAESFun('zhoudad'))
       from.pathname = from.pathname === '/login' ? '/' : from.pathname;
-      this.props.history.replace(from)
+      this.props.history.replace(from);
     }
   }
   render() {
@@ -62,7 +64,7 @@ class Login extends Component<any,LoginState> {
                             message: '请输入用户名称！',
                           },
                         ]}>
-                        <Input prefix={<UserOutlined />} placeholder="Username" />
+                        <Input prefix={<UserOutlined />} placeholder="admin" />
                       </Form.Item>
                       <Form.Item
                         name="password"
@@ -72,7 +74,7 @@ class Login extends Component<any,LoginState> {
                             message: '请输入用户密码！',
                           },
                         ]}>
-                        <Input prefix={<LockOutlined />} type="password" placeholder="Password" />
+                        <Input prefix={<LockOutlined />} type="password" placeholder="123456" />
                       </Form.Item>
                       <Form.Item>
                         <Form.Item name="remember" valuePropName="checked" noStyle>
@@ -103,7 +105,10 @@ class Login extends Component<any,LoginState> {
                       <Form.Item>
                         <Row gutter={8}>
                           <Col span={16}>
-                            <Form.Item name="captcha" noStyle rules={[{ required: true, message: '请输入验证码！' }]}>
+                            <Form.Item
+                              name="captcha"
+                              noStyle
+                              rules={[{ required: true, message: '请输入验证码！' }]}>
                               <Input prefix={<MailOutlined />} placeholder="验证码" />
                             </Form.Item>
                           </Col>

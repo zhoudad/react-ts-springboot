@@ -23,7 +23,7 @@ class Analysis extends Component<any, any> {
   }
 
   render() {
-    console.log(this.state.data)
+    // console.log(this.state.data)
     let config = {
       data: this.state.data,
       xField: '城市',

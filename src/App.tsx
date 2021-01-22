@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { HashRouter as Router, Switch } from 'react-router-dom';
 import { main as mainConfig } from './routes/index';
-import { RouteRender } from './routes/utils';
+import { RouteRender} from './routes/_utils';
 import ErrorBoundary from './views/ErrorBoundary';
 import { Provider } from 'react-redux';
 import store from './reducer/store';

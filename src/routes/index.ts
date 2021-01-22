@@ -9,6 +9,8 @@ import {
   Articles,
   Projects,
   Writing,
+  NotFound,
+  Free
 } from '../views';
 
 export const menus = [
@@ -121,6 +123,22 @@ export const main = [
     exact: true,
     name: '登录',
     component: Login,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: NotFound,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: '/free',
+    name: '自由也、页',
+    component: Free,
     meta: {
       requiresAuth: false,
     },

@@ -14,7 +14,7 @@ import {
 import { withTranslation } from 'react-i18next';
 import MainBreadcrumb from '../../components/MainBreadcrumb';
 import CustomizeIcon from '../../components/CustomizeIcon';
-import { RoutesRender } from '../../routes/utils';
+import { RoutesRender } from '../../routes/_utils';
 import { routePropsInter } from '../../interfaces/routeInterface';
 import { mapPaths } from '../../reducer/connect';
 import { connect } from 'react-redux';
@@ -106,7 +106,7 @@ class Home extends Component<any, HomeState> {
 
   render() {
     const { routes, t } = this.props;
-    console.log(this.props)
+    // console.log(this.props,'home')
     const { selectedKeys, tabListNoTitle } = this.state;
     const data = [
       {
@@ -290,7 +290,7 @@ class Home extends Component<any, HomeState> {
         <Content className="site-layout-content">
           <MainBreadcrumb />
           <div className="site-layout-wrap">
-            <RoutesRender routes={routes}></RoutesRender>
+            <RoutesRender routes={routes} ></RoutesRender>
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>ZhouDad ©2021 Created by Demo</Footer>

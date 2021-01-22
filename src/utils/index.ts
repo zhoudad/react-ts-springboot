@@ -1,4 +1,4 @@
-import { encryption, decryption, encryptByAES, decryptByAES } from './secure';
+import { encryption, decryption, encryptByAES, decryptByAES} from './secure';
 
 //加密解密
 export function encryptionFun(data: any): any {
@@ -29,7 +29,6 @@ export function getLanguage() {
   const lang = navigator.language;
   language = language || lang;
   language = language.replace(/-/, '_').toLowerCase();
-  console.log(lang)
   if (language === 'zh_cn' || language === 'zh') {
     language = 'zh_CN';
   } else if (language === 'zh_tw' || language === 'zh_hk' || language === 'uk_cn') {
