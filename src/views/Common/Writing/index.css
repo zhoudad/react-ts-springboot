@@ -18,7 +18,18 @@
 .writing-up-image:hover{
     color: #313131;
 }
+.writing-btn-group{
+    cursor: pointer;
+}
 
 .writing-wrap {
     padding: 16px;
 }
+
+/* 编辑器样式 */
+.superFancyBlockquote {
+    color: #999;
+    font-family: 'Hoefler Text', Georgia, serif;
+    font-style: italic;
+    text-align: center;
+  }
